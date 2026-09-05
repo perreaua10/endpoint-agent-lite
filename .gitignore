@@ -1,0 +1,91 @@
+.env
+
+# ==============================================================================
+# CMake Build Artifacts & Directories
+# ==============================================================================
+# Ignore all variations of build directories (e.g., build/, build-debug/, build-release/)
+[Bb]uild*/
+/out/
+/bin/
+/lib/
+
+# Ignore CMake cache and generated build files if someone builds directly in the root
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+
+# ==============================================================================
+# CMake User Specific Configurations
+# ==============================================================================
+# User-specific CMake presets should not be shared in version control
+CMakeUserPresets.json
+
+# ==============================================================================
+# IDE and Editor Specific Files
+# ==============================================================================
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# CLion / IntelliJ
+.idea/
+cmake-build-*/
+
+# Visual Studio (MSVC)
+.vs/
+*.user
+*.suo
+*.sln
+*.vcxproj
+*.filters
+
+# Xcode
+*.xcodeproj/
+*.xcworkspace/
+
+# ==============================================================================
+# Compiled Binaries, Libraries, and Objects
+# ==============================================================================
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.o
+*.obj
+*.gch
+*.pch
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# ==============================================================================
+# OS Generated Files
+# ==============================================================================
+.DS_Store
+Thumbs.db
+.out
+
+./windows
+./linux
