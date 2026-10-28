@@ -21,12 +21,49 @@ yet parse or act on commands.
 include/process_monitor/   Shared public headers
 src/                       Main program and platform implementations
 udp_test_server_tools/     Small Python/JavaScript UDP test helpers
-windows/, linux/           Local CMake build output directories
+build/, windows/, linux/   Local CMake build output directories
 ```
 
-## Build
+## Build from WSL
 
-Requires CMake and a C++20 compiler.
+Open WSL in the repository root (the folder containing `CMakeLists.txt` and
+`README.md`) and run all commands below from there. Install CMake, the native
+Linux build tools, and the MinGW cross-compiler once per WSL distribution:
+
+```bash
+sudo apt update
+sudo apt install cmake build-essential \
+  gcc-mingw-w64-x86-64 g++-mingw-w64-x86-64
+```
+
+The first CMake configure downloads `nlohmann_json` from GitHub, so it needs
+network access.
+
+### Linux executable
+
+```bash
+cmake -S . -B build/wsl-linux
+cmake --build build/wsl-linux
+```
+
+The executable is `build/wsl-linux/ProcMonitor`.
+
+### Windows executable (cross-compiled with MinGW)
+
+```bash
+cmake -S . -B build/wsl-windows \
+  -DCMAKE_SYSTEM_NAME=Windows \
+  -DCMAKE_C_COMPILER=x86_64-w64-mingw32-gcc \
+  -DCMAKE_CXX_COMPILER=x86_64-w64-mingw32-g++
+cmake --build build/wsl-windows
+```
+
+The executable is `build/wsl-windows/ProcMonitor.exe`. The C++ compiler name
+ends in `-g++`.
+
+## Build natively on Windows
+
+Requires CMake and a C++20 compiler. From PowerShell at the repository root:
 
 ```powershell
 cmake -S . -B build
